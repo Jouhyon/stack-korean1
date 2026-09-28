@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Dialogue 100 Korean</title>
+    <title>Simple Dialogue 100 Korean (English & Français)</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -22,7 +22,7 @@
         <div class="max-w-5xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-2">
             <h1 class="text-2xl font-bold flex items-center gap-2">
                 <i class="fa-solid font-bold text-yellow-300 fa-language"></i>
-                Simple Dialogue 100 Korean
+                Simple Dialogue 100 Korean (EN/FR)
             </h1>
             <nav class="flex gap-2">
                 <button onclick="switchTab('sentences')" id="tab-sentences" class="px-4 py-2 rounded-lg font-medium transition bg-indigo-700 text-white">100 문장</button>
@@ -41,7 +41,7 @@
             <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex flex-col md:flex-row gap-4 justify-between">
                 <div class="relative flex-grow">
                     <i class="fa-solid fa-magnifying-glass absolute left-3 top-3.5 text-slate-400"></i>
-                    <input type="text" id="search-input" onkeyup="filterSentences()" placeholder="문장, 발음, 뜻 검색..." class="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <input type="text" id="search-input" onkeyup="filterSentences()" placeholder="문장, 발음, 뜻 검색 (Korean / English / Français)..." class="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
                 </div>
                 <select id="category-select" onchange="filterSentences()" class="px-4 py-2 border border-slate-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
                     <option value="all">전체 카테고리 보기</option>
@@ -74,6 +74,7 @@
                                 <th class="p-3">한국어 (Base)</th>
                                 <th class="p-3">Romanization</th>
                                 <th class="p-3">English</th>
+                                <th class="p-3">Français</th>
                                 <th class="p-3">Usage in Sentences</th>
                             </tr>
                         </thead>
@@ -93,6 +94,7 @@
                                 <th class="p-3">한국어 (Base)</th>
                                 <th class="p-3">Romanization</th>
                                 <th class="p-3">English</th>
+                                <th class="p-3">Français</th>
                                 <th class="p-3">Usage in Sentences</th>
                             </tr>
                         </thead>
@@ -110,7 +112,7 @@
                 <i class="fa-solid fa-lightbulb text-indigo-600 text-2xl"></i>
                 <div>
                     <h3 class="font-bold text-indigo-900">블록 조립 퀴즈 규칙</h3>
-                    <p class="text-sm text-indigo-700">제시된 영어 문장에 맞게 블록을 순서대로 클릭하여 완벽한 한국어 문장을 완성해보세요. (힌트: 한국어 동사/형용사는 문장 맨 끝에 위치합니다!)</p>
+                    <p class="text-sm text-indigo-700">제시된 외국어 문장에 맞게 블록을 순서대로 클릭하여 완벽한 한국어 문장을 완성해보세요. (힌트: 한국어 동사/형용사는 문장 맨 끝에 위치합니다!)</p>
                 </div>
             </div>
 
@@ -128,161 +130,162 @@
 
     <!-- JavaScript Data and Logic -->
     <script>
-        // Data Structures
+        // Data Structures with French Translations Added
         const sentencesData = [
             // 1. Greetings & Farewells
-            { cat: 1, ko: "안녕하세요.", rom: "Annyeonghaseyo", en: "Hello." },
-            { cat: 1, ko: "이름이 뭐예요?", rom: "Ireumi mwoyeyo?", en: "What is your name?" },
-            { cat: 1, ko: "어디에서 오셨어요?", rom: "Eodieseo osyeosseoyo?", en: "Where are you from?" },
-            { cat: 1, ko: "잘 지냈어요?", rom: "Jal jinaesseoyo?", en: "How have you been?" },
-            { cat: 1, ko: "오랜만이에요.", rom: "Oraenmanieyo", en: "Long time no see." },
-            { cat: 1, ko: "어떻게 지내세요?", rom: "Eotteoke jinaeseyo?", en: "How are you doing?" },
-            { cat: 1, ko: "좋은 아침이에요.", rom: "Joeun achimieyo", en: "Good morning." },
-            { cat: 1, ko: "좋은 하루 되세요.", rom: "Joeun haru doeseyo", en: "Have a good day." },
-            { cat: 1, ko: "좋은 밤 되세요.", rom: "Joeun bam doeseyo", en: "Have a good night." },
-            { cat: 1, ko: "안녕히 가세요.", rom: "Annyeonghi gaseyo", en: "Goodbye. (To someone leaving)" },
-            { cat: 1, ko: "안녕히 계세요.", rom: "Annyeonghi gyeseyo", en: "Goodbye. (To someone staying)" },
-            { cat: 1, ko: "잘 가요.", rom: "Jal gayo", en: "Goodbye." },
-            { cat: 1, ko: "다음에 또 봐요.", rom: "Daeume tto bwayo", en: "See you next time." },
+            { cat: 1, ko: "안녕하세요.", rom: "Annyeonghaseyo", en: "Hello.", fr: "Bonjour." },
+            { cat: 1, ko: "이름이 뭐예요?", rom: "Ireumi mwoyeyo?", en: "What is your name?", fr: "Comment vous vous appelez ?" },
+            { cat: 1, ko: "어디에서 오셨어요?", rom: "Eodieseo osyeosseoyo?", en: "Where are you from?", fr: "D'où venez-vous ?" },
+            { cat: 1, ko: "잘 지냈어요?", rom: "Jal jinaesseoyo?", en: "How have you been?", fr: "Comment allez-vous ?" },
+            { cat: 1, ko: "오랜만이에요.", rom: "Oraenmanieyo", en: "Long time no see.", fr: "Ça fait longtemps." },
+            { cat: 1, ko: "어떻게 지내세요?", rom: "Eotteoke jinaeseyo?", en: "How are you doing?", fr: "Comment ça va ?" },
+            { cat: 1, ko: "좋은 아침이에요.", rom: "Joeun achimieyo", en: "Good morning.", fr: "Bonjour (matin)." },
+            { cat: 1, ko: "좋은 하루 되세요.", rom: "Joeun haru doeseyo", en: "Have a good day.", fr: "Passez une bonne journée." },
+            { cat: 1, ko: "좋은 밤 되세요.", rom: "Joeun bam doeseyo", en: "Have a good night.", fr: "Passez une bonne nuit." },
+            { cat: 1, ko: "안녕히 가세요.", rom: "Annyeonghi gaseyo", en: "Goodbye. (To someone leaving)", fr: "Au revoir (à quelqu'un qui part)." },
+            { cat: 1, ko: "안녕히 계세요.", rom: "Annyeonghi gyeseyo", en: "Goodbye. (To someone staying)", fr: "Au revoir (à quelqu'un qui reste)." },
+            { cat: 1, ko: "잘 가요.", rom: "Jal gayo", en: "Goodbye.", fr: "Salut / Prends soin de toi." },
+            { cat: 1, ko: "다음에 또 봐요.", rom: "Daeume tto bwayo", en: "See you next time.", fr: "À la prochaine." },
 
             // 2. Basic Manners
-            { cat: 2, ko: "감사합니다.", rom: "Gamsahamnida", en: "Thank you." },
-            { cat: 2, ko: "기다려 주셔서 감사합니다.", rom: "Gidaryeo jusyeoseo gamsahamnida", en: "Thank you for waiting." },
-            { cat: 2, ko: "네, 알겠습니다.", rom: "Ne, algetseumnida", en: "Yes, I understand." },
-            { cat: 2, ko: "알겠어요.", rom: "Algesseoyo", en: "I understand." },
-            { cat: 2, ko: "이해했어요.", rom: "Ihaehaesseoyo", en: "I understood." },
-            { cat: 2, ko: "모르겠어요.", rom: "Moreugesseoyo", en: "I don't know." },
-            { cat: 2, ko: "죄송합니다.", rom: "Joesonghamnida", en: "I am sorry." },
-            { cat: 2, ko: "늦어서 죄송합니다.", rom: "Neujeoseo joesonghamnida", en: "Sorry for being late." },
+            { cat: 2, ko: "감사합니다.", rom: "Gamsahamnida", en: "Thank you.", fr: "Merci." },
+            { cat: 2, ko: "기다려 주셔서 감사합니다.", rom: "Gidaryeo jusyeoseo gamsahamnida", en: "Thank you for waiting.", fr: "Merci d'avoir patienté." },
+            { cat: 2, ko: "네, 알겠습니다.", rom: "Ne, algetseumnida", en: "Yes, I understand.", fr: "Oui, d'accord / J'ai compris." },
+            { cat: 2, ko: "알겠어요.", rom: "Algesseoyo", en: "I understand.", fr: "D'accord." },
+            { cat: 2, ko: "이해했어요.", rom: "Ihaehaesseoyo", en: "I understood.", fr: "J'ai compris." },
+            { cat: 2, ko: "모르겠어요.", rom: "Moreugesseoyo", en: "I don't know.", fr: "Je ne sais pas." },
+            { cat: 2, ko: "죄송합니다.", rom: "Joesonghamnida", en: "I am sorry.", fr: "Pardon / Je suis désolé." },
+            { cat: 2, ko: "늦어서 죄송합니다.", rom: "Neujeoseo joesonghamnida", en: "Sorry for being late.", fr: "Désolé pour le retard." },
 
             // 3. Restaurant & Cafe
-            { cat: 3, ko: "배고파요.", rom: "Baegopayo", en: "I am hungry." },
-            { cat: 3, ko: "목말라요.", rom: "Mongmallayo", en: "I am thirsty." },
-            { cat: 3, ko: "여기 앉아도 돼요?", rom: "Yeogi anjado dwaeyo?", en: "Can I sit here?" },
-            { cat: 3, ko: "메뉴판 좀 볼 수 있나요?", rom: "Menyupan jom bol su innayo?", en: "Can I see the menu, please?" },
-            { cat: 3, ko: "물 좀 주실 수 있나요?", rom: "Mul jom jusil su innayo?", en: "Can you give me some water?" },
-            { cat: 3, ko: "이것 좀 포장해 주세요.", rom: "Igeot jom pojanghae juseyo", en: "Please wrap this up for me." },
-            { cat: 3, ko: "건배!", rom: "Geonbae!", en: "Cheers!" },
-            { cat: 3, ko: "맛있게 드세요.", rom: "Masitge deuseyo", en: "Enjoy your meal." },
-            { cat: 3, ko: "저는 한국 음식을 좋아해요.", rom: "Jeoneun hanguk eumsigeul joahaeyo", en: "I like Korean food." },
-            { cat: 3, ko: "점심 먹었어요?", rom: "Jeomsim meogeosseoyo?", en: "Did you have lunch?" },
-            { cat: 3, ko: "계산서를 받을 수 있을까요?", rom: "Gyesanseoreul badeul su isseulkkayo?", en: "May I have the bill, please?" },
+            { cat: 3, ko: "배고파요.", rom: "Baegopayo", en: "I am hungry.", fr: "J'ai faim." },
+            { cat: 3, ko: "목말라요.", rom: "Mongmallayo", en: "I am thirsty.", fr: "J'ai soif." },
+            { cat: 3, ko: "여기 앉아도 돼요?", rom: "Yeogi anjado dwaeyo?", en: "Can I sit here?", fr: "Puis-je m'asseoir ici ?" },
+            { cat: 3, ko: "메뉴판 좀 볼 수 있나요?", rom: "Menyupan jom bol su innayo?", en: "Can I see the menu, please?", fr: "Puis-je voir le menu, s'il vous plaît ?" },
+            { cat: 3, ko: "물 좀 주실 수 있나요?", rom: "Mul jom jusil su innayo?", en: "Can you give me some water?", fr: "Puis-je avoir de l'eau ?" },
+            { cat: 3, ko: "이것 좀 포장해 주세요.", rom: "Igeot jom pojanghae juseyo", en: "Please wrap this up for me.", fr: "Emportez ceci, s'il vous plaît." },
+            { cat: 3, ko: "건배!", rom: "Geonbae!", en: "Cheers!", fr: "Santé !" },
+            { cat: 3, ko: "맛있게 드세요.", rom: "Masitge deuseyo", en: "Enjoy your meal.", fr: "Bon appétit." },
+            { cat: 3, ko: "저는 한국 음식을 좋아해요.", rom: "Jeoneun hanguk eumsigeul joahaeyo", en: "I like Korean food.", fr: "J'aime la cuisine coréenne." },
+            { cat: 3, ko: "점심 먹었어요?", rom: "Jeomsim meogeosseoyo?", en: "Did you have lunch?", fr: "Avez-vous déjeuné ?" },
+            { cat: 3, ko: "계산서를 받을 수 있을까요?", rom: "Gyesanseoreul badeul su isseulkkayo?", en: "May I have the bill, please?", fr: "L'addition, s'il vous plaît." },
 
             // 4. Shopping
-            { cat: 4, ko: "이거 얼마예요?", rom: "Igeo eolmayeyo?", en: "How much is this?" },
-            { cat: 4, ko: "이게 뭐예요?", rom: "Ige mwoyeyo?", en: "What is this?" },
-            { cat: 4, ko: "할인해 주실 수 있나요?", rom: "Harinhae jusil su innayo?", en: "Can you give me a discount?" },
-            { cat: 4, ko: "영수증을 받을 수 있나요?", rom: "Yeongsujeung-eul badeul su innayo?", en: "Can I get a receipt?" },
-            { cat: 4, ko: "이것을 교환할 수 있나요?", rom: "Igeoseul gyohwanhal su innayo?", en: "Can I exchange this?" },
-            { cat: 4, ko: "반품할 수 있나요?", rom: "Banpumhal su innayo?", en: "Can I return this?" },
+            { cat: 4, ko: "이거 얼마예요?", rom: "Igeo eolmayeyo?", en: "How much is this?", fr: "C'est combien ?" },
+            { cat: 4, ko: "이게 뭐예요?", rom: "Ige mwoyeyo?", en: "What is this?", fr: "Qu'est-ce que c'est ?" },
+            { cat: 4, ko: "할인해 주실 수 있나요?", rom: "Harinhae jusil su innayo?", en: "Can you give me a discount?", fr: "Pouvez-vous me faire une réduction ?" },
+            { cat: 4, ko: "영수증을 받을 수 있나요?", rom: "Yeongsujeung-eul badeul su innayo?", en: "Can I get a receipt?", fr: "Puis-je avoir un reçu ?" },
+            { cat: 4, ko: "이것을 교환할 수 있나요?", rom: "Igeoseul gyohwanhal su innayo?", en: "Can I exchange this?", fr: "Puis-je échanger ceci ?" },
+            { cat: 4, ko: "반품할 수 있나요?", rom: "Banpumhal su innayo?", en: "Can I return this?", fr: "Puis-je le retourner ?" },
 
             // 5. Directions & Transport
-            { cat: 5, ko: "화장실이 어디예요?", rom: "Hwajangsiri eodiyeyo?", en: "Where is the bathroom?" },
-            { cat: 5, ko: "어디 가세요?", rom: "Eodi gaseyo?", en: "Where are you going?" },
-            { cat: 5, ko: "집에 가요.", rom: "Jibe gayo", en: "I'm going home." },
-            { cat: 5, ko: "어떻게 가야 하나요?", rom: "Eotteoke gaya hanayo?", en: "How do I get there?" },
-            { cat: 5, ko: "이곳이 처음이에요.", rom: "Igosi cheoeumieyo", en: "It's my first time here." },
-            { cat: 5, ko: "여기예요.", rom: "Yeogiyeyo", en: "It's over here." },
-            { cat: 5, ko: "이 방향 맞나요?", rom: "I banghyang mannayo?", en: "Is this the right direction?" },
-            { cat: 5, ko: "여기서 얼마나 멀어요?", rom: "Yeogiseo eolmana meoreoyo?", en: "How far is it from here?" },
-            { cat: 5, ko: "시간이 얼마나 걸리나요?", rom: "Sigani eolmana geollinayo?", en: "How long does it take?" },
+            { cat: 5, ko: "화장실이 어디예요?", rom: "Hwajangsiri eodiyeyo?", en: "Where is the bathroom?", fr: "Où sont les toilettes ?" },
+            { cat: 5, ko: "어디 가세요?", rom: "Eodi gaseyo?", en: "Where are you going?", fr: "Où allez-vous ?" },
+            { cat: 5, ko: "집에 가요.", rom: "Jibe gayo", en: "I'm going home.", fr: "Je vais à la maison." },
+            { cat: 5, ko: "어떻게 가야 하나요?", rom: "Eotteoke gaya hanayo?", en: "How do I get there?", fr: "Comment puis-je y aller ?" },
+            { cat: 5, ko: "이곳이 처음이에요.", rom: "Igosi cheoeumieyo", en: "It's my first time here.", fr: "C'est ma première fois ici." },
+            { cat: 5, ko: "여기예요.", rom: "Yeogiyeyo", en: "It's over here.", fr: "C'est ici." },
+            { cat: 5, ko: "이 방향 맞나요?", rom: "I banghyang mannayo?", en: "Is this the right direction?", fr: "Est-ce la bonne direction ?" },
+            { cat: 5, ko: "여기서 얼마나 멀어요?", rom: "Yeogiseo eolmana meoreoyo?", en: "How far is it from here?", fr: "À quelle distance est-ce d'ici ?" },
+            { cat: 5, ko: "시간이 얼마나 걸리나요?", rom: "Sigani eolmana geollinayo?", en: "How long does it take?", fr: "Combien de temps cela prend-il ?" },
 
             // 6. Help & Requests
-            { cat: 6, ko: "도와주세요.", rom: "Dowajuseyo", en: "Please help me." },
-            { cat: 6, ko: "무엇을 도와드릴까요?", rom: "Mueoseul dowadeurilkkayo?", en: "How may I help you?" },
-            { cat: 6, ko: "좀 도와줄래요?", rom: "Jom dowajullaeyo?", en: "Can you help me?" },
-            { cat: 6, ko: "그것 좀 도와줄 수 있어요?", rom: "Geugeot jom dowajul su isseoyo?", en: "Can you help me with that?" },
-            { cat: 6, ko: "조금 기다려 주세요.", rom: "Jogeum gidaryeo juseyo", en: "Please wait a little bit." },
-            { cat: 6, ko: "여기 좀 봐주세요.", rom: "Yeogi jom bwajuseyo", en: "Please look here." },
-            { cat: 6, ko: "와이파이 비밀번호가 무엇인가요?", rom: "Waipai bimilbeonhoga mueosingayo?", en: "What is the Wi-Fi password?" },
+            { cat: 6, ko: "도와주세요.", rom: "Dowajuseyo", en: "Please help me.", fr: "Aidez-moi, s'il vous plaît." },
+            { cat: 6, ko: "무엇을 도와드릴까요?", rom: "Mueoseul dowadeurilkkayo?", en: "How may I help you?", fr: "Comment puis-je vous aider ?" },
+            { cat: 6, ko: "좀 도와줄래요?", rom: "Jom dowajullaeyo?", en: "Can you help me?", fr: "Pouvez-vous m'aider ?" },
+            { cat: 6, ko: "그것 좀 도와줄 수 있어요?", rom: "Geugeot jom dowajul su isseoyo?", en: "Can you help me with that?", fr: "Pouvez-vous m'aider avec ça ?" },
+            { cat: 6, ko: "조금 기다려 주세요.", rom: "Jogeum gidaryeo juseyo", en: "Please wait a little bit.", fr: "Veuillez patienter un instant." },
+            { cat: 6, ko: "여기 좀 봐주세요.", rom: "Yeogi jom bwajuseyo", en: "Please look here.", fr: "Regardez ici, s'il vous plaît." },
+            { cat: 6, ko: "와이파이 비밀번호가 무엇인가요?", rom: "Waipai bimilbeonhoga mueosingayo?", en: "What is the Wi-Fi password?", fr: "Quel est le mot de passe du Wi-Fi ?" },
 
             // 7. Communication
-            { cat: 7, ko: "저는 한국어를 조금만 할 수 있어요.", rom: "Jeoneun hangugeoreul jogeumman hal su isseoyo", en: "I can only speak a little Korean." },
-            { cat: 7, ko: "천천히 말해 주세요.", rom: "Cheoncheonhi malhae juseyo", en: "Please speak slowly." },
-            { cat: 7, ko: "너무 빨라요.", rom: "Neomu ppallayo", en: "It's too fast." },
-            { cat: 7, ko: "다시 한번 말씀해 주세요.", rom: "Dasi hanbeon malsseumhae juseyo", en: "Please say it again." },
-            { cat: 7, ko: "뭐라고 하셨어요?", rom: "Mworago hasyeosseoyo?", en: "What did you say?" },
-            { cat: 7, ko: "조금 더 설명해 주실 수 있나요?", rom: "Jogeum deo seolmyeonghae jusil su innayo?", en: "Can you explain a bit more?" },
+            { cat: 7, ko: "저는 한국어를 조금만 할 수 있어요.", rom: "Jeoneun hangugeoreul jogeumman hal su isseoyo", en: "I can only speak a little Korean.", fr: "Je ne parle qu'un peu coréen." },
+            { cat: 7, ko: "천천히 말해 주세요.", rom: "Cheoncheonhi malhae juseyo", en: "Please speak slowly.", fr: "Parlez lentement, s'il vous plaît." },
+            { cat: 7, ko: "너무 빨라요.", rom: "Neomu ppallayo", en: "It's too fast.", fr: "C'est trop rapide." },
+            { cat: 7, ko: "다시 한번 말씀해 주세요.", rom: "Dasi hanbeon malsseumhae juseyo", en: "Please say it again.", fr: "Répétez, s'il vous plaît." },
+            { cat: 7, ko: "뭐라고 하셨어요?", rom: "Mworago hasyeosseoyo?", en: "What did you say?", fr: "Qu'avez-vous dit ?" },
+            { cat: 7, ko: "조금 더 설명해 주실 수 있나요?", rom: "Jogeum deo seolmyeonghae jusil su innayo?", en: "Can you explain a bit more?", fr: "Pouvez-vous expliquer un peu plus ?" },
 
             // 8. Time, Weather & Plans
-            { cat: 8, ko: "몇 시예요?", rom: "Myeot siyeyo?", en: "What time is it?" },
-            { cat: 8, ko: "날씨가 어때요?", rom: "Nalssiga eottaeyo?", en: "How is the weather?" },
-            { cat: 8, ko: "날씨가 정말 좋아요.", rom: "Nalssiga jeongmal joayo", en: "The weather is really good." },
-            { cat: 8, ko: "비가 올 것 같아요.", rom: "Biga ol geot gatayo", en: "It looks like it's going to rain." },
-            { cat: 8, ko: "저녁에 시간 있어요?", rom: "Jeonyeoge sigan isseoyo?", en: "Do you have time in the evening?" },
-            { cat: 8, ko: "어디에서 만날까요?", rom: "Eodieseo mannalkkayo?", en: "Where shall we meet?" },
-            { cat: 8, ko: "어디가 좋을까요?", rom: "Eodiga joeulkkayo?", en: "Where would be good?" },
-            { cat: 8, ko: "몇 시에 시작해요?", rom: "Myeot sie sijakhaeyo?", en: "What time does it start?" },
-            { cat: 8, ko: "언제 끝나요?", rom: "Eonje kkeunnayo?", en: "When does it end?" },
-            { cat: 8, ko: "더 시간이 필요해요.", rom: "Deo sigani piryohaeyo", en: "I need more time." },
-            { cat: 8, ko: "잠시만요.", rom: "Jamsimanyo", en: "Just a moment." },
-            { cat: 8, ko: "기다릴게요.", rom: "Gidarilgeyo", en: "I'll be waiting for you." },
-            { cat: 8, ko: "여기로 오세요.", rom: "Yeogiro oseyo", en: "Come over here." },
-            { cat: 8, ko: "같이 가요.", rom: "Gachi gayo", en: "Let's go together." },
+            { cat: 8, ko: "몇 시예요?", rom: "Myeot siyeyo?", en: "What time is it?", fr: "Quelle heure est-il ?" },
+            { cat: 8, ko: "날씨가 어때요?", rom: "Nalssiga eottaeyo?", en: "How is the weather?", fr: "Quel temps fait-il ?" },
+            { cat: 8, ko: "날씨가 정말 좋아요.", rom: "Nalssiga jeongmal joayo", en: "The weather is really good.", fr: "Il fait vraiment beau." },
+            { cat: 8, ko: "비가 올 것 같아요.", rom: "Biga ol geot gatayo", en: "It looks like it's going to rain.", fr: "On dirait qu'il va pleuvoir." },
+            { cat: 8, ko: "저녁에 시간 있어요?", rom: "Jeonyeoge sigan isseoyo?", en: "Do you have time in the evening?", fr: "Êtes-vous libre ce soir ?" },
+            { cat: 8, ko: "어디에서 만날까요?", rom: "Eodieseo mannalkkayo?", en: "Where shall we meet?", fr: "Où se rejoint-on ?" },
+            { cat: 8, ko: "어디가 좋을까요?", rom: "Eodiga joeulkkayo?", en: "Where would be good?", fr: "Où serait-ce bien ?" },
+            { cat: 8, ko: "몇 시에 시작해요?", rom: "Myeot sie sijakhaeyo?", en: "What time does it start?", fr: "À quelle heure ça commence ?" },
+            { cat: 8, ko: "언제 끝나요?", rom: "Eonje kkeunnayo?", en: "When does it end?", fr: "Quand cela se termine-t-il ?" },
+            { cat: 8, ko: "더 시간이 필요해요.", rom: "Deo sigani piryohaeyo", en: "I need more time.", fr: "J'ai besoin de plus de temps." },
+            { cat: 8, ko: "잠시만요.", rom: "Jamsimanyo", en: "Just a moment.", fr: "Un moment, s'il vous plaît." },
+            { cat: 8, ko: "기다릴게요.", rom: "Gidarilgeyo", en: "I'll be waiting for you.", fr: "Je vous attendrai." },
+            { cat: 8, ko: "여기로 오세요.", rom: "Yeogiro oseyo", en: "Come over here.", fr: "Venez ici." },
+            { cat: 8, ko: "같이 가요.", rom: "Gachi gayo", en: "Let's go together.", fr: "Allons-y ensemble." },
 
             // 9. Feelings & Reactions
-            { cat: 9, ko: "좋아요.", rom: "Joayo", en: "It's good." },
-            { cat: 9, ko: "싫어요.", rom: "Sireoyo", en: "I don't like it." },
-            { cat: 9, ko: "재미있어요.", rom: "Jaemiisseoyo", en: "It is fun." },
-            { cat: 9, ko: "피곤해요.", rom: "Pigonhaeyo", en: "I am tired." },
-            { cat: 9, ko: "여기 아파요.", rom: "Yeogi apayo", en: "It hurts here." },
-            { cat: 9, ko: "어디 아프세요?", rom: "Eodi apeuseyo?", en: "Are you sick? (Where does it hurt?)" },
-            { cat: 9, ko: "기분이 어때요?", rom: "Gibuni eottaeyo?", en: "How do you feel?" },
-            { cat: 9, ko: "좋은 생각이에요.", rom: "Joeun saenggagieyo", en: "That's a good idea." },
-            { cat: 9, ko: "동의해요.", rom: "Dong-uihaeyo", en: "I agree." },
-            { cat: 9, ko: "어떻게 생각하세요?", rom: "Eotteoke saenggakhaseyo?", en: "What do you think?" },
-            { cat: 9, ko: "축하해요.", rom: "Chukahaeyo", en: "Congratulations." },
-            { cat: 9, ko: "훌륭해요.", rom: "Hullyunghaeyo", en: "Wonderful." },
-            { cat: 9, ko: "건강하세요.", rom: "Geonganghaseyo", en: "Stay healthy." },
-            { cat: 9, ko: "행복하세요.", rom: "Haengbokhaseyo", en: "Be happy." },
-            { cat: 9, ko: "조심하세요.", rom: "Josimhaseyo", en: "Take care." },
-            { cat: 9, ko: "걱정하지 마세요.", rom: "Geokjeonghaji maseyo", en: "Don't worry." },
-            { cat: 9, ko: "포기하지 마세요.", rom: "Pogihaji maseyo", en: "Don't give up." },
-            { cat: 9, ko: "사랑해요.", rom: "Saranghaeyo", en: "I love you." },
-            { cat: 9, ko: "저를 믿어주세요.", rom: "Jeoreul mideojuseyo", en: "Please trust me." },
-            { cat: 9, ko: "무슨 일 있어요?", rom: "Museun il isseoyo?", en: "What happened?" },
-            { cat: 9, ko: "뭐 하세요?", rom: "Mwo haseyo?", en: "What are you doing?" },
-            { cat: 9, ko: "어제 뭐 했어요?", rom: "Eoje mwo haesseoyo?", en: "What did you do yesterday?" },
-            { cat: 9, ko: "빨리 해야 돼요.", rom: "Ppalli haeya dwaeyo", en: "I need to do it quickly." },
-            { cat: 9, ko: "쉬고 싶어요.", rom: "Swigo sipeoyo", en: "I want some rest." },
-            { cat: 9, ko: "그만하죠.", rom: "Geumanhajo", en: "Let's stop here." },
-            { cat: 9, ko: "다음에 다시 해보죠.", rom: "Daeume dasi haebojo", en: "Let's try again next time." }
+            { cat: 9, ko: "좋아요.", rom: "Joayo", en: "It's good.", fr: "C'est bien / J'aime." },
+            { cat: 9, ko: "싫어요.", rom: "Sireoyo", en: "I don't like it.", fr: "Je n'aime pas." },
+            { cat: 9, ko: "재미있어요.", rom: "Jaemiisseoyo", en: "It is fun.", fr: "C'est amusant." },
+            { cat: 9, ko: "피곤해요.", rom: "Pigonhaeyo", en: "I am tired.", fr: "Je suis fatigué(e)." },
+            { cat: 9, ko: "여기 아파요.", rom: "Yeogi apayo", en: "It hurts here.", fr: "J'ai mal ici." },
+            { cat: 9, ko: "어디 아프세요?", rom: "Eodi apeuseyo?", en: "Are you sick? (Where does it hurt?)", fr: "Où avez-vous mal ?" },
+            { cat: 9, ko: "기분이 어때요?", rom: "Gibuni eottaeyo?", en: "How do you feel?", fr: "Comment vous sentez-vous ?" },
+            { cat: 9, ko: "좋은 생각이에요.", rom: "Joeun saenggagieyo", en: "That's a good idea.", fr: "C'est une bonne idée." },
+            { cat: 9, ko: "동의해요.", rom: "Dong-uihaeyo", en: "I agree.", fr: "Je suis d'accord." },
+            { cat: 9, ko: "어떻게 생각하세요?", rom: "Eotteoke saenggakhaseyo?", en: "What do you think?", fr: "Qu'en pensez-vous ?" },
+            { cat: 9, ko: "축하해요.", rom: "Chukahaeyo", en: "Congratulations.", fr: "Félicitations." },
+            { cat: 9, ko: "훌륭해요.", rom: "Hullyunghaeyo", en: "Wonderful.", fr: "Magnifique." },
+            { cat: 9, ko: "건강하세요.", rom: "Geonganghaseyo", en: "Stay healthy.", fr: "Restez en bonne santé." },
+            { cat: 9, ko: "행복하세요.", rom: "Haengbokhaseyo", en: "Be happy.", fr: "Soyez heureux." },
+            { cat: 9, ko: "조심하세요.", rom: "Josimhaseyo", en: "Take care.", fr: "Faites attention." },
+            { cat: 9, ko: "걱정하지 마세요.", rom: "Geokjeonghaji maseyo", en: "Don't worry.", fr: "Ne vous inquiétez pas." },
+            { cat: 9, ko: "포기하지 마세요.", rom: "Pogihaji maseyo", en: "Don't give up.", fr: "N'abandonnez pas." },
+            { cat: 9, ko: "사랑해요.", rom: "Saranghaeyo", en: "I love you.", fr: "Je t'aime." },
+            { cat: 9, ko: "저를 믿어주세요.", rom: "Jeoreul mideojuseyo", en: "Please trust me.", fr: "Faites-moi confiance." },
+            { cat: 9, ko: "무슨 일 있어요?", rom: "Museun il isseoyo?", en: "What happened?", fr: "Qu'est-ce qui s'est passé ?" },
+            { cat: 9, ko: "뭐 하세요?", rom: "Mwo haseyo?", en: "What are you doing?", fr: "Que faites-vous ?" },
+            { cat: 9, ko: "어제 뭐 했어요?", rom: "Eoje mwo haesseoyo?", en: "What did you do yesterday?", fr: "Qu'avez-vous fait hier ?" },
+            { cat: 9, ko: "빨리 해야 돼요.", rom: "Ppalli haeya dwaeyo", en: "I need to do it quickly.", fr: "Je dois le faire rapidement." },
+            { cat: 9, ko: "쉬고 싶어요.", rom: "Swigo sipeoyo", en: "I want some rest.", fr: "Je veux me reposer." },
+            { cat: 9, ko: "그만하죠.", rom: "Geumanhajo", en: "Let's stop here.", fr: "Arrêtons-nous ici." },
+            { cat: 9, ko: "다음에 다시 해보죠.", rom: "Daeume dasi haebojo", en: "Let's try again next time.", fr: "Réessayons la prochaine fois." }
         ];
 
         const vocabNouns = [
-            { base: "이것", rom: "igeot", en: "this (thing)", usage: "이게 뭐예요? / 이것을 교환할 수 있나요?" },
-            { base: "무엇", rom: "mueot", en: "what", usage: "무엇을 도와드릴까요? (회화체: 뭐예요?)" },
-            { base: "얼마", rom: "eolma", en: "how much", usage: "이거 얼마예요?" },
-            { base: "처음", rom: "cheoeum", en: "the first time", usage: "이곳이 처음이에요." },
-            { base: "집", rom: "jip", en: "house, home", usage: "집에 가요." },
-            { base: "방향", rom: "banghyang", en: "direction", usage: "이 방향 맞나요?" },
-            { base: "시간", rom: "sigan", en: "time", usage: "시간이 얼마나 걸리나요?" },
-            { base: "하루", rom: "haru", en: "day", usage: "좋은 하루 되세요." },
-            { base: "할인", rom: "harin", en: "discount", usage: "할인해 주실 수 있나요?" },
-            { base: "영수증", rom: "yeongsujeung", en: "receipt", usage: "영수증을 받을 수 있나요?" },
-            { base: "교환", rom: "gyohwan", en: "exchange", usage: "이것을 교환할 수 있나요?" },
-            { base: "반품", rom: "banpum", en: "return (goods)", usage: "반품할 수 있나요?" }
+            { base: "이것", rom: "igeot", en: "this (thing)", fr: "ceci / cette chose", usage: "이게 뭐예요? / 이것을 교환할 수 있나요?" },
+            { base: "무엇", rom: "mueot", en: "what", fr: "quoi / qu'est-ce que", usage: "무엇을 도와드릴까요? (회화체: 뭐예요?)" },
+            { base: "얼마", rom: "eolma", en: "how much", fr: "combien", usage: "이거 얼마예요?" },
+            { base: "처음", rom: "cheoeum", en: "the first time", fr: "la première fois", usage: "이곳이 처음이에요." },
+            { base: "집", rom: "jip", en: "house, home", fr: "maison", usage: "집에 가요." },
+            { base: "방향", rom: "banghyang", en: "direction", fr: "direction", usage: "이 방향 맞나요?" },
+            { base: "시간", rom: "sigan", en: "time", fr: "temps / heure", usage: "시간이 얼마나 걸리나요?" },
+            { base: "하루", rom: "haru", en: "day", fr: "journée", usage: "좋은 하루 되세요." },
+            { base: "할인", rom: "harin", en: "discount", fr: "réduction / remise", usage: "할인해 주실 수 있나요?" },
+            { base: "영수증", rom: "yeongsujeung", en: "receipt", fr: "reçu / ticket", usage: "영수증을 받을 수 있나요?" },
+            { base: "교환", rom: "gyohwan", en: "exchange", fr: "échange", usage: "이것을 교환할 수 있나요?" },
+            { base: "반품", rom: "banpum", en: "return (goods)", fr: "retour de marchandise", usage: "반품할 수 있나요?" }
         ];
 
         const vocabVerbs = [
-            { base: "돕다", rom: "dopda", en: "to help", usage: "도와주세요. / 도와드릴까요?" },
-            { base: "가다", rom: "gada", en: "to go", usage: "어디 가세요? / 가야 하나요?" },
-            { base: "보다", rom: "boda", en: "to see, to look", usage: "여기 좀 봐주세요." },
-            { base: "맞다", rom: "matda", en: "to be right, to be correct", usage: "이 방향 맞나요?" },
-            { base: "멀다(형)", rom: "meolda", en: "to be far", usage: "여기서 얼마나 멀어요?" },
-            { base: "걸리다", rom: "geollida", en: "to take (time)", usage: "시간이 얼마나 걸리나요?" },
-            { base: "기다리다", rom: "gidarida", en: "to wait", usage: "조금 기다려 주세요." },
-            { base: "이해하다", rom: "ihaehaada", en: "to understand", usage: "이해했어요." },
-            { base: "좋다(형)", rom: "jota", en: "to be good", usage: "좋아요. / 좋은 하루 되세요." },
-            { base: "받다", rom: "batda", en: "to receive, to get", usage: "영수증을 받을 수 있나요?" },
-            { base: "조심하다", rom: "josimhada", en: "to be careful", usage: "조심하세요." },
-            { base: "계시다", rom: "gyesida", en: "to stay (honorific)", usage: "안녕히 계세요." }
+            { base: "돕다", rom: "dopda", en: "to help", fr: "aider", usage: "도와주세요. / 도와드릴까요?" },
+            { base: "가다", rom: "gada", en: "to go", fr: "aller", usage: "어디 가세요? / 가야 하나요?" },
+            { base: "보다", rom: "boda", en: "to see, to look", fr: "voir / regarder", usage: "여기 좀 봐주세요." },
+            { base: "맞다", rom: "matda", en: "to be right, to be correct", fr: "être correct", usage: "이 방향 맞나요?" },
+            { base: "멀다(형)", rom: "meolda", en: "to be far", fr: "être loin", usage: "여기서 얼마나 멀어요?" },
+            { base: "걸리다", rom: "geollida", en: "to take (time)", fr: "prendre (du temps)", usage: "시간이 얼마나 걸리나요?" },
+            { base: "기다리다", rom: "gidarida", en: "to wait", fr: "attendre", usage: "조금 기다려 주세요." },
+            { base: "이해하다", rom: "ihaehaada", en: "to understand", fr: "comprendre", usage: "이해했어요." },
+            { base: "좋다(형)", rom: "jota", en: "to be good", fr: "être bon / bien", usage: "좋아요. / 좋은 하루 되세요." },
+            { base: "받다", rom: "batda", en: "to receive, to get", fr: "recevoir / obtenir", usage: "영수증을 받을 수 있나요?" },
+            { base: "조심하다", rom: "josimhada", en: "to be careful", fr: "faire attention", usage: "조심하세요." },
+            { base: "계시다", rom: "gyesida", en: "to stay (honorific)", fr: "rester (honorifique)", usage: "안녕히 계세요." }
         ];
 
         const quizData = [
             {
                 qNum: 1,
                 en: "The weather is really good.",
+                fr: "Il fait vraiment beau.",
                 blocks: ["정말", "좋아요", "날씨", "가"],
                 correct: ["날씨", "가", "정말", "좋아요"],
                 fullKo: "날씨가 정말 좋아요."
@@ -290,6 +293,7 @@
             {
                 qNum: 2,
                 en: "Where is the bathroom?",
+                fr: "Où sont les toilettes ?",
                 blocks: ["어디", "이", "예요?", "화장실"],
                 correct: ["화장실", "이", "어디", "예요?"],
                 fullKo: "화장실이 어디예요?"
@@ -297,6 +301,7 @@
             {
                 qNum: 3,
                 en: "Can I see the menu, please?",
+                fr: "Puis-je voir le menu, s'il vous plaît ?",
                 blocks: ["볼 수 있나요?", "좀", "메뉴판"],
                 correct: ["메뉴판", "좀", "볼 수 있나요?"],
                 fullKo: "메뉴판 좀 볼 수 있나요?"
@@ -304,6 +309,7 @@
             {
                 qNum: 4,
                 en: "Please wrap this up for me.",
+                fr: "Emportez ceci, s'il vous plaît.",
                 blocks: ["이것", "포장해 주세요", "좀"],
                 correct: ["이것", "좀", "포장해 주세요"],
                 fullKo: "이것 좀 포장해 주세요."
@@ -311,6 +317,7 @@
             {
                 qNum: 5,
                 en: "I like Korean food.",
+                fr: "J'aime la cuisine coréenne.",
                 blocks: ["한국 음식", "좋아해요", "을", "저는"],
                 correct: ["저는", "한국 음식", "을", "좋아해요"],
                 fullKo: "저는 한국 음식을 좋아해요."
@@ -345,7 +352,7 @@
                 const card = document.createElement('div');
                 card.className = "bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col justify-between sentence-card";
                 card.dataset.cat = item.cat;
-                card.dataset.text = `${item.ko} ${item.rom} ${item.en}`.toLowerCase();
+                card.dataset.text = `${item.ko} ${item.rom} ${item.en} ${item.fr}`.toLowerCase();
 
                 card.innerHTML = `
                     <div>
@@ -358,7 +365,10 @@
                         <h3 class="text-lg font-bold text-slate-800 mb-1">${item.ko}</h3>
                         <p class="text-xs text-indigo-500 font-medium italic mb-2">${item.rom}</p>
                     </div>
-                    <p class="text-sm text-slate-600 border-t border-slate-100 pt-2">${item.en}</p>
+                    <div class="border-t border-slate-100 pt-2 space-y-1">
+                        <p class="text-sm text-slate-700"><span class="text-xs font-bold text-slate-400 me-1">EN:</span>${item.en}</p>
+                        <p class="text-sm text-indigo-900 font-medium"><span class="text-xs font-bold text-indigo-400 me-1">FR:</span>${item.fr}</p>
+                    </div>
                 `;
                 listEl.appendChild(card);
             });
@@ -389,6 +399,7 @@
                     <td class="p-3 font-bold text-indigo-900">${item.base}</td>
                     <td class="p-3 text-sm text-slate-500 italic">${item.rom}</td>
                     <td class="p-3 text-sm text-slate-700">${item.en}</td>
+                    <td class="p-3 text-sm text-indigo-900 font-medium">${item.fr}</td>
                     <td class="p-3 text-sm text-slate-600">${item.usage}</td>
                 </tr>
             `).join('');
@@ -398,6 +409,7 @@
                     <td class="p-3 font-bold text-indigo-900">${item.base}</td>
                     <td class="p-3 text-sm text-slate-500 italic">${item.rom}</td>
                     <td class="p-3 text-sm text-slate-700">${item.en}</td>
+                    <td class="p-3 text-sm text-indigo-900 font-medium">${item.fr}</td>
                     <td class="p-3 text-sm text-slate-600">${item.usage}</td>
                 </tr>
             `).join('');
@@ -419,7 +431,10 @@
                         <span class="font-bold text-indigo-600">Question ${q.qNum}</span>
                         <span class="text-sm text-slate-500">${idx + 1} / ${quizData.length}</span>
                     </div>
-                    <p class="text-lg font-medium text-slate-800">"${q.en}"</p>
+                    <div class="space-y-1">
+                        <p class="text-base font-medium text-slate-700"><span class="text-xs font-bold text-slate-400 me-2">EN</span>"${q.en}"</p>
+                        <p class="text-base font-semibold text-indigo-900"><span class="text-xs font-bold text-indigo-400 me-2">FR</span>"${q.fr}"</p>
+                    </div>
                     
                     <!-- Answer Box -->
                     <div class="min-h-[50px] p-3 bg-slate-50 border-2 border-dashed border-slate-300 rounded-lg flex flex-wrap gap-2 items-center" id="answer-box-${idx}">
@@ -428,7 +443,7 @@
 
                     <!-- Available Options -->
                     <div class="flex flex-wrap gap-2 pt-2" id="options-box-${idx}">
-                        ${q.blocks.map((b, bIdx) => `
+                        ${q.blocks.map((b) => `
                             <button onclick="selectBlock(${idx}, '${b}')" class="px-3 py-1.5 bg-indigo-50 border border-indigo-200 hover:bg-indigo-100 text-indigo-800 font-medium rounded-lg text-sm transition">
                                 ${b}
                             </button>
@@ -477,9 +492,6 @@
             }
 
             // Update Options Box
-            const usedCounts = {};
-            state.selected.forEach(b => usedCounts[b] = (usedCounts[b] || 0) + 1);
-
             optBox.innerHTML = quizData[qIdx].blocks.map(b => {
                 const countInSelected = state.selected.filter(x => x === b).length;
                 const countInBlocks = quizData[qIdx].blocks.filter(x => x === b).length;
